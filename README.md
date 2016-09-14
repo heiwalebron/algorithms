@@ -128,3 +128,67 @@ public class SelectSort {
     }
 }
 ```
+- InsertSort
+```
+<!--局部有序（区别于冒泡和选择排序）-->
+public class ArrayIns {
+    private long[] a;
+    private int nElems;
+
+    public ArrayIns(int max) {
+        a=new long[max];
+        nElems=0;
+    }
+    public void insert(long value){
+        a[nElems]=value;
+        nElems++;
+    }
+    public void display(){
+        for (int j=0;j<nElems;j++){
+            System.out.print(a[j]+"");
+            System.out.println("");
+        }
+    }
+    public void insertSort(){
+        int in,out;
+
+        for (out=1;out<nElems;out++){
+            long temp=a[out];
+            in=out;
+            while(in>0&&a[in-1]>=temp){
+                a[in]=a[in-1];
+                --in;
+            }
+            a[in]=temp;
+
+        }
+    }
+}
+
+
+public class InsertSort {
+    public static void main(String[] args){
+        int maxSize=100;
+        ArrayIns arr;
+        arr=new ArrayIns(maxSize);
+
+        arr.insert(12);
+        arr.insert(17);
+        arr.insert(25);
+        arr.insert(1);
+        arr.insert(56);
+        arr.insert(5);
+        arr.insert(25);
+        arr.insert(13);
+        arr.insert(47);
+        arr.insert(26);
+
+        arr.display();
+        System.out.println("--------------------------------------------");
+
+        arr.insertSort();
+        arr.display();
+    }
+}
+
+```
