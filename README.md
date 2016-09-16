@@ -203,4 +203,6 @@ public class InsertSort {
  讲究先进先出；
 
 - 优先级队列
+
+## 链表
  
