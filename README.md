@@ -193,6 +193,31 @@ public class InsertSort {
 
 ```
 
+## 二分法查找
+```
+基本原理：每次查找都对半分，但要求数组是有序的
+
+public class Solution {
+
+    public static int BinarySearch(int[] sz,int key){
+        int low = 0;
+        int high = sz.length - 1;
+
+        while (low <= high) {
+            int middle = (low + high) / 2;
+            if(sz[middle] == key){
+                return middle;
+            }else if(sz[middle] > key){
+                high = middle - 1;
+            }else {
+                low = middle + 1;
+            }
+        }
+        return -1;
+    }
+}
+```
+
 ## 栈和队列
 - 栈
 
@@ -201,10 +226,60 @@ public class InsertSort {
 - 队列
 
  讲究先进先出；
+ 
+ ```
+ 用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。（来自剑指offer）
+ 
+ import java.util.Stack; //使用栈记得引用java.util,Stack包
+ 
+public class Solution {
+   Stack<Integer> stack1 = new Stack<Integer>();
+   Stack<Integer> stack2 = new Stack<Integer>();
+   
+//入栈函数
+   public void push(int num) {
+       stack1.push(num);    //要往栈中压入什么就直接用栈的push方法就好了      
+    }
+   
+//出栈函数
+   public int pop() {
+   Integer re=null; 
+       if(!stack2.empty()){  // 如果栈2不是空的，那么把最上面那个取出来
+           re=stack2.pop(); 
+       }else{ 
+               //如果栈2是空的，就把栈1里的数一个个取出来，放到栈2里
+           while(!stack1.empty()){   
+                re=stack1.pop(); 
+                stack2.push(re); 
+                             } 
+                  //栈2里有数之后，再次把里面的数取出来
+                  if(!stack2.empty()){ 
+                         re=stack2.pop(); 
+                   } 
+       } 
+       return re; 
+    }
+}
+ ```
 
 - 优先级队列
 
 ## 链表
 
   在有序链表中插入数据项的方法：当算法找到了要插入的位置时，把新链结点的next字段指向下一个链结点，然后把前一个链结点的next字段改为指向新的链结点，链结点插在表头或者表尾另说；
+  
+- 输入一个链表，从尾到头打印链表每个节点的值。 (来自剑指offer)
+```
+import java.util.ArrayList;
+public class Solution {
+    ArrayList<Integer> arrayList=new ArrayList<Integer>();
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+        if(listNode!=null){
+            this.printListFromTailToHead(listNode.next);
+            arrayList.add(listNode.val);
+        }
+        return arrayList;
+    }
+}
+```
  
